@@ -1,5 +1,5 @@
 export function checkUser(value) {
-    const users = JSON.parse(localStorage.getItem('users'))
+    const users = JSON.parse(localStorage.getItem('users')) || []
 
     let result;
     if (typeof value === 'string') {

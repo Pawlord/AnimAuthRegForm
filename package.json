@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@vercel/speed-insights": "^1.1.0",
     "bcryptjs": "^2.4.3",
     "clsx": "^2.1.1",
     "cra-template": "1.2.0",

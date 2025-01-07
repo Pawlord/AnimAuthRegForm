@@ -1,0 +1,44 @@
+.container {
+    height: 400px;
+    width: 800px;
+    padding: 40px 0;
+    position: relative;
+}
+
+.block {
+    border-radius: 10px;
+    background-color: rgba(255, 255, 255, 0.2);
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+.form-box {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    height: 100%;
+    width: 50%;
+    overflow: hidden;
+
+    display: flex;
+    align-items: center;
+
+    transition: 0.5s ease-in;
+    background-color: #fff;
+    box-shadow: 0 4px 16px #ccc;
+    border-radius: 10px;
+}
+
+.form-box.active {
+    left: 50%;
+}
+
+.form-box.active .form_signin {
+    left: -100%;
+}
+
+.form-box.active .form_register {
+    left: 0;
+}

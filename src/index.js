@@ -1,11 +1,17 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { App } from './components';
+import { Form, HomePage } from './Pages';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
 
   <React.StrictMode>
-    <App />
+    <BrowserRouter>
+      <Routes>
+        <Route path='/' element={<Form />} />
+        <Route path='/home-page' element={<HomePage />} />
+      </Routes>
+    </BrowserRouter>
   </React.StrictMode>
 );

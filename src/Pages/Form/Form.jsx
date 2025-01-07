@@ -4,18 +4,15 @@ import React from 'react';
 import { ToastContainer } from 'react-toastify';
 
 // Компоненты
-import { MainLayout } from './ui/main-layout';
-import { RegistrationSection, SignInSection } from './ui/sections';
-import { FormSignIn } from './ui/form-sign-in';
-import { FormRegistration } from './ui/form-registration';
+import { MainLayout, RegistrationSection, SignInSection, FormSignIn, FormRegistration } from '../../components/ui'
 
 // Стили
 import './main.scss';
 
 //Контекст
-import { BodyActiveContextProvider } from './context/bodyActiveContext';
+import { BodyActiveContextProvider } from '../../components/context/bodyActiveContext';
 
-export function App() {
+export function Form() {
 
     React.useEffect(() => {
         const users = JSON.parse(localStorage.getItem('users')) || []

@@ -8,7 +8,12 @@ import { delay } from '../../../lib/delay';
 //toast
 import { toast } from 'react-toastify';
 
+//работа с react-router-dom
+import { useNavigate } from 'react-router-dom';
+
 export function useAuth() {
+    const navigate = useNavigate();
+
     const initialValues = {
         email: '',
         password: '',
@@ -50,6 +55,7 @@ export function useAuth() {
 
             setIsLoading(false);
             toast.success(response.message);
+            navigate('/home-page')
 
         } catch (error) {
             setIsLoading(false)

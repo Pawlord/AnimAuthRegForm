@@ -37,8 +37,10 @@
 
 .form-box.active .form_signin {
     left: -100%;
+    opacity: 0;
 }
 
 .form-box.active .form_register {
     left: 0;
+    opacity: 1;
 }

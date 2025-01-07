@@ -18,7 +18,7 @@ import { BodyActiveContextProvider } from './context/bodyActiveContext';
 export function App() {
 
     React.useEffect(() => {
-        const users = JSON.parse(localStorage.getItem('users'))
+        const users = JSON.parse(localStorage.getItem('users')) || []
         console.log(users)
     }, [])
 

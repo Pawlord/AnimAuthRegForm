@@ -6,7 +6,7 @@ import './sections.scss'
 //Контекст
 import { BodyActiveContext } from '../../context/bodyActiveContext';
 
-export function RegistrationSection({ onClick }) {
+export function RegistrationSection() {
     const { onClickToggleBodyActive } = React.useContext(BodyActiveContext)
 
     return (

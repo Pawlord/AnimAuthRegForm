@@ -11,7 +11,36 @@ import { toast } from 'react-toastify';
 //работа с react-router-dom
 import { useNavigate } from 'react-router-dom';
 
-export function useAuth() {
+//Типы
+import { UseFormRegisterReturn, UseFormHandleSubmit, FormState } from 'react-hook-form';
+
+interface AuthData {
+    email: string;
+    password: string;
+    [key: string]: any;
+}
+
+interface InputProps {
+    name: string;
+    value: string,
+    ref?: any,
+    [key: string]: any;
+    onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
+    onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;
+}
+
+interface AuthResult {
+    handleSubmit: UseFormHandleSubmit<AuthData>;
+    registerInput: (inputProps: InputProps) => UseFormRegisterReturn & InputProps;
+    updateUserData: (value: string, inputName: InputName) => void;
+    onSubmit: (data: AuthData) => Promise<void>;
+    isLoading: boolean;
+    errors: FormState<AuthData>['errors'];
+}
+
+type InputName = 'email' | 'password';
+
+export function useAuth(): AuthResult {
     const navigate = useNavigate();
 
     const initialValues = {
@@ -19,12 +48,12 @@ export function useAuth() {
         password: '',
     }
 
-    const [userData, setUserData] = React.useState(initialValues)
+    const [userData, setUserData] = React.useState<AuthData>(initialValues)
     const [isLoading, setIsLoading] = React.useState(false);
 
-    const { register, handleSubmit, clearErrors, formState: { errors }, setValue } = useForm();
+    const { register, handleSubmit, clearErrors, formState: { errors }, setValue } = useForm<AuthData>();
 
-    const updateUserData = (value, inputName) => {
+    const updateUserData = (value: string, inputName: InputName) => {
         clearErrors()
         setValue(inputName, value);
         setUserData(prev => ({
@@ -33,7 +62,7 @@ export function useAuth() {
         }))
     }
 
-    const registerInput = (inputProps) => {
+    const registerInput = (inputProps: InputProps): UseFormRegisterReturn & InputProps => {
         return {
             ...inputProps,
             ...register(inputProps.name, { required: 'Вы неправильно ввели логин или пароль!' }),
@@ -41,7 +70,7 @@ export function useAuth() {
         }
     }
 
-    const onSubmit = async data => {
+    const onSubmit = async (data: AuthData): Promise<void> => {
         setIsLoading(true)
         try {
             await delay(2000)

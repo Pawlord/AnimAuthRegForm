@@ -2,7 +2,16 @@
 import { checkUser } from "../../../lib/checkUser";
 import { comparePassword } from '../../../lib/comparePassword';
 
-export const checkAuth = async data => {
+//Типы
+import { IUser } from "../../../types/types";
+
+type Message = {
+    status: number,
+    success: boolean,
+    message: string
+}
+
+export const checkAuth = async (data: IUser): Promise<Message> => {
     try {
         const findedUser = checkUser(data);
 
@@ -20,6 +29,6 @@ export const checkAuth = async data => {
 
     } catch (error) {
         console.error(error);
-        throw error;
+        return { status: 500, success: false, message: 'Произошла внутренняя ошибка сервера!' };
     }
 }

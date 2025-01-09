@@ -7,7 +7,14 @@ import './main-layout.scss'
 //Контекст
 import { BodyActiveContext } from '../../context/bodyActiveContext';
 
-export function MainLayout({ signInSection, registrationSection, formSignIn, formRegistration }) {
+interface Props {
+    signInSection: React.ReactNode,
+    registrationSection: React.ReactNode,
+    formSignIn: React.ReactNode,
+    formRegistration: React.ReactNode
+}
+
+export function MainLayout({ signInSection, registrationSection, formSignIn, formRegistration }: Props) {
     const { isActive } = React.useContext(BodyActiveContext)
 
     return (

@@ -4,7 +4,13 @@ import clsx from 'clsx';
 //Стили
 import './form-layout.scss';
 
-export function FormLayout({ className, children, onSubmit }) {
+interface Props {
+    className?: string,
+    children: React.ReactNode,
+    onSubmit: (event: React.FormEvent<HTMLFormElement>) => void,
+}
+
+export function FormLayout({ className, children, onSubmit }: Props) {
 
     return (
         <form className={clsx('form', className)} onSubmit={onSubmit}>

@@ -1,7 +1,10 @@
 import { users } from '../../../consts/users';
 import { hashPassword } from './hashPassword';
 
-export async function registerUser(data) {
+//Типы
+import { IUser } from '../../../types/types';
+
+export async function registerUser(data: IUser) {
     try {
         const hashedPassword = await hashPassword(data.password)
         const updatedData = {

@@ -3,13 +3,8 @@ import { checkUser } from "../../../lib/checkUser";
 import { comparePassword } from '../../../lib/comparePassword';
 
 //Типы
-import { IUser } from "../../../types/types";
+import { IUser, Message } from "../../../types/types";
 
-type Message = {
-    status: number,
-    success: boolean,
-    message: string
-}
 
 export const checkAuth = async (data: IUser): Promise<Message> => {
     try {

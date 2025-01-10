@@ -12,35 +12,11 @@ import { toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
 
 //Типы
-import { UseFormRegisterReturn, UseFormHandleSubmit, FormState } from 'react-hook-form';
+import { UseFormRegisterReturn } from 'react-hook-form';
+import { AuthData, InputProps, RegAuthResult } from '../../../types/types';
 
-interface AuthData {
-    email: string;
-    password: string;
-    [key: string]: any;
-}
 
-interface InputProps {
-    name: string;
-    value: string,
-    ref?: any,
-    [key: string]: any;
-    onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
-    onBlur?: (e: React.FocusEvent<HTMLInputElement>) => void;
-}
-
-interface AuthResult {
-    handleSubmit: UseFormHandleSubmit<AuthData>;
-    registerInput: (inputProps: InputProps) => UseFormRegisterReturn & InputProps;
-    updateUserData: (value: string, inputName: InputName) => void;
-    onSubmit: (data: AuthData) => Promise<void>;
-    isLoading: boolean;
-    errors: FormState<AuthData>['errors'];
-}
-
-type InputName = 'email' | 'password';
-
-export function useAuth(): AuthResult {
+export function useAuth(): RegAuthResult {
     const navigate = useNavigate();
 
     const initialValues = {
@@ -53,7 +29,7 @@ export function useAuth(): AuthResult {
 
     const { register, handleSubmit, clearErrors, formState: { errors }, setValue } = useForm<AuthData>();
 
-    const updateUserData = (value: string, inputName: InputName) => {
+    const updateUserData = (value: string, inputName: string) => {
         clearErrors()
         setValue(inputName, value);
         setUserData(prev => ({

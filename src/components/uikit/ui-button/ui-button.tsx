@@ -7,7 +7,14 @@ import { UiLoader } from '../ui-loader/ui-loader';
 //Стили
 import './ui-button.scss';
 
-export function UiButton({ color = 'blue', text, disabled, isLoading }) {
+type Props = {
+    color?: string;
+    text: string;
+    disabled?: boolean;
+    isLoading?: boolean;
+}
+
+export function UiButton({ color = 'blue', text, disabled, isLoading }: Props) {
     const btnStyle = {
         'blue': "blue-btn",
         'green': "green-btn"

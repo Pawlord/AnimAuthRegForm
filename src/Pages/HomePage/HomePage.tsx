@@ -14,7 +14,7 @@ export function HomePage() {
     const navigate = useNavigate()
 
     React.useEffect(() => {
-        let timer;
+        let timer: NodeJS.Timeout | undefined;
         if (location.pathname === '/home-page') {
             timer = setTimeout(() => {
                 setIsShown(true)

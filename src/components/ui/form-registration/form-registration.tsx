@@ -10,7 +10,8 @@ import { FormTitle } from '../form-title';
 import { FormGroup } from '../../uikit/form-group';
 import { FormLayout } from '../form-layout/form-layout';
 
-export function FormRegistration({ changeIsActive }) {
+
+export function FormRegistration() {
 
     const { updateUserData, registerInput, onSubmit, onError, handleSubmit, errors, isFormValid, isLoading } = useRegistration();
 
@@ -51,7 +52,7 @@ export function FormRegistration({ changeIsActive }) {
             <UiButton
                 color='green'
                 text={'Зарегистрироваться'}
-                disabled={!isFormValid()}
+                disabled={!isFormValid?.()}
                 isLoading={isLoading}
             />
         </FormLayout>

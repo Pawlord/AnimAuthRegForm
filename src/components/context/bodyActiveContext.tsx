@@ -1,13 +1,17 @@
 import React from 'react';
 
+type Props = {
+    children: React.ReactNode
+}
+
 export const BodyActiveContext = React.createContext({
     isActive: false,
-    setIsActive: (active) => { },
+    setIsActive: (active: boolean) => { },
     onClickToggleBodyActive: () => { },
 });
 
-export function BodyActiveContextProvider({ children }) {
-    const [isActive, setIsActive] = React.useState(false);
+export function BodyActiveContextProvider({ children }: Props) {
+    const [isActive, setIsActive] = React.useState<boolean>(false);
 
     const onClickToggleBodyActive = () => {
         setIsActive(prevState => !prevState);

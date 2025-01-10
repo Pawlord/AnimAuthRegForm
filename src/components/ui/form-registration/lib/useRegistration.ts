@@ -14,7 +14,11 @@ import { BodyActiveContext } from '../../../context/bodyActiveContext';
 //Имитация задержки
 import { delay } from '../../../lib/delay';
 
-export function useRegistration() {
+//Типы
+import { AuthData, RegAuthResult, InputProps, IErrorData, IUser } from '../../../types/types';
+import { UseFormRegisterReturn, FieldErrors } from 'react-hook-form';
+
+export function useRegistration(): RegAuthResult {
     const initialValues = {
         login: '',
         email: '',
@@ -22,13 +26,13 @@ export function useRegistration() {
         confirmPassword: '',
     }
 
-    const [userData, setUserData] = React.useState(initialValues)
+    const [userData, setUserData] = React.useState<AuthData>(initialValues)
     const [isLoading, setIsLoading] = React.useState(false);
 
     const { onClickToggleBodyActive } = React.useContext(BodyActiveContext)
-    const { register, handleSubmit, clearErrors, formState: { errors }, setValue, getValues, setError, reset, } = useForm();
+    const { register, handleSubmit, clearErrors, formState: { errors }, setValue, getValues, setError, reset, } = useForm<AuthData>();
 
-    const updateUserData = (value, inputName) => {
+    const updateUserData = (value: string, inputName: string) => {
         clearErrors(inputName)
         setValue(inputName, value, { shouldValidate: true })
         setUserData(prev => ({
@@ -37,10 +41,10 @@ export function useRegistration() {
         }))
     }
 
-    const isConfirmPassword = inputName => inputName === 'confirmPassword';
-    const getMinLength = inputName => isConfirmPassword(inputName) ? undefined : inputName === 'password' ? 5 : 3;
+    const isConfirmPassword = (inputName: string) => inputName === 'confirmPassword';
+    const getMinLength = (inputName: string) => isConfirmPassword(inputName) ? undefined : inputName === 'password' ? 5 : 3;
 
-    const registerInput = (inputProps) => {
+    const registerInput = (inputProps: InputProps): UseFormRegisterReturn & InputProps => {
         const validateLength = getMinLength(inputProps.name)
 
         return {
@@ -60,8 +64,16 @@ export function useRegistration() {
                     : undefined
             }),
             value: userData[inputProps.name] || '',
-            onBlur: () => onBlur(inputProps.name)
+            onBlur: () => onBlur(inputProps.name),
 
+        }
+    }
+
+    const onBlur = async (inputName: string): Promise<void> => {
+        const value = getValues(inputName);
+        const inputType = inputName === 'login' ? 'логином' : 'email';
+        if (checkUser(value)) {
+            setError(inputName, { type: 'manual', message: `Пользователь с таким ${inputType} уже существует!` })
         }
     }
 
@@ -69,7 +81,7 @@ export function useRegistration() {
         setUserData(initialValues)
     }
 
-    const onSubmit = async data => {
+    const onSubmit = async (data: IUser) => {
         if (checkUser(data)) {
             setIsLoading(false)
             toast.error('Проверьте правильность заполнения формы!')
@@ -106,20 +118,13 @@ export function useRegistration() {
         }
     }
 
-    const isFormValid = () => {
+    const isFormValid = (): boolean => {
         return Object.keys(errors).length === 0;
     }
 
-    const onError = data => {
+    const onError = (data: FieldErrors<AuthData>): void => {
         toast.error('Проверьте правильно заполнения формы.')
-    }
-
-    const onBlur = (inputName) => {
-        const value = getValues(inputName);
-        const inputType = inputName === 'login' ? 'логином' : 'email';
-        if (checkUser(value)) {
-            setError(inputName, { type: 'manual', message: `Пользователь с таким ${inputType} уже существует!` })
-        }
+        console.log(data)
     }
 
     return {

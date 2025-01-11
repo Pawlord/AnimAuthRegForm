@@ -3,7 +3,7 @@ import { useForm } from "react-hook-form";
 
 //Проверка авторизации
 import { checkAuth } from './checkAuth';
-import { delay } from '../../../lib/delay';
+import { delay } from '../../../../lib/delay';
 
 //toast
 import { toast } from 'react-toastify';
@@ -13,7 +13,7 @@ import { useNavigate } from 'react-router-dom';
 
 //Типы
 import { UseFormRegisterReturn } from 'react-hook-form';
-import { AuthData, InputProps, RegAuthResult } from '../../../types/types';
+import { AuthData, InputProps, RegAuthResult } from '../../../../types/types';
 
 
 export function useAuth(): RegAuthResult {

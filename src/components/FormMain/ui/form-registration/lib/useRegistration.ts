@@ -9,13 +9,13 @@ import { checkUser } from '../../../lib/checkUser';
 import { toast } from 'react-toastify';
 
 //Контекст
-import { BodyActiveContext } from '../../../context/bodyActiveContext';
+import { BodyActiveContext } from '../../../../context/bodyActiveContext';
 
 //Имитация задержки
-import { delay } from '../../../lib/delay';
+import { delay } from '../../../../lib/delay';
 
 //Типы
-import { AuthData, RegAuthResult, InputProps, IErrorData, IUser } from '../../../types/types';
+import { AuthData, RegAuthResult, InputProps, IErrorData, IUser } from '../../../../types/types';
 import { UseFormRegisterReturn, FieldErrors } from 'react-hook-form';
 
 export function useRegistration(): RegAuthResult {

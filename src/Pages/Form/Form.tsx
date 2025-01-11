@@ -4,13 +4,14 @@ import React from 'react';
 import { ToastContainer } from 'react-toastify';
 
 // Компоненты
-import { MainLayout, RegistrationSection, SignInSection, FormSignIn, FormRegistration } from '../../components/ui'
+import { MainLayout, RegistrationSection, SignInSection, FormSignIn, FormRegistration } from '../../components/FormMain/ui'
 
 // Стили
-import './main.scss';
+import './form.scss';
 
 //Контекст
 import { BodyActiveContextProvider } from '../../components/context/bodyActiveContext';
+import { CenterLayout } from '../../components/layouts/center-layout';
 
 export function Form() {
 
@@ -21,13 +22,15 @@ export function Form() {
 
     return (
         <BodyActiveContextProvider>
-            <ToastContainer position='top-center' autoClose={2000} pauseOnHover={false} />
-            <MainLayout
-                signInSection={<SignInSection />}
-                registrationSection={<RegistrationSection />}
-                formSignIn={<FormSignIn />}
-                formRegistration={<FormRegistration />}
-            />
+            <CenterLayout>
+                <ToastContainer position='top-center' autoClose={2000} pauseOnHover={false} />
+                <MainLayout
+                    signInSection={<SignInSection />}
+                    registrationSection={<RegistrationSection />}
+                    formSignIn={<FormSignIn />}
+                    formRegistration={<FormRegistration />}
+                />
+            </CenterLayout>
         </BodyActiveContextProvider>
     )
 }

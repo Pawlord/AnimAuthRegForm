@@ -5,9 +5,9 @@ import { useRegistration } from './lib/useRegistration';
 import 'react-toastify/dist/ReactToastify.css'; // Очень важный импорт CSS
 
 //Компоненты
-import { UiButton } from '../../uikit/ui-button';
+import { UiButton } from '../../../uikit/ui-button';
 import { FormTitle } from '../form-title';
-import { FormGroup } from '../../uikit/form-group';
+import { FormGroup } from '../../../uikit/form-group';
 import { FormLayout } from '../form-layout/form-layout';
 
 

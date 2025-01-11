@@ -1,8 +1,8 @@
-import { users } from '../../../consts/users';
+import { users } from '../../../../consts/users';
 import { hashPassword } from './hashPassword';
 
 //Типы
-import { IUser } from '../../../types/types';
+import { IUser } from '../../../../types/types';
 
 export async function registerUser(data: IUser) {
     try {

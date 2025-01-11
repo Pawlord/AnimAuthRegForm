@@ -1,7 +1,4 @@
-body {
-    margin: 0;
-    font-family: sans-serif;
-
+.center-layout {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -10,12 +7,4 @@ body {
     overflow: hidden;
 
     transition: 0.85s;
-}
-
-body.active {
-    background-color: rgb(86, 205, 127);
-}
-
-.hidden {
-    display: none;
 }

@@ -5,7 +5,7 @@ import clsx from 'clsx';
 import './main-layout.scss'
 
 //Контекст
-import { BodyActiveContext } from '../../context/bodyActiveContext';
+import { BodyActiveContext } from '../../../context/bodyActiveContext';
 
 interface Props {
     signInSection: React.ReactNode,

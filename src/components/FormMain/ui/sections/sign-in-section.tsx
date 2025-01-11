@@ -4,7 +4,7 @@ import React from 'react';
 import './sections.scss';
 
 //Контекст
-import { BodyActiveContext } from '../../context/bodyActiveContext';
+import { BodyActiveContext } from '../../../context/bodyActiveContext';
 
 export function SignInSection() {
     const { onClickToggleBodyActive } = React.useContext(BodyActiveContext)

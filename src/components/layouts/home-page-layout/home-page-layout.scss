@@ -1,0 +1,26 @@
+.home-page-layout {
+    padding: 1rem;
+    min-height: 99vh;
+
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+    &--red {
+        background-color: rgb(192, 44, 44);
+    }
+
+    &--green {
+        background-color: rgb(86, 205, 127);
+    }
+
+    &--blue {
+        background-color: rgb(72, 62, 201);
+    }
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}

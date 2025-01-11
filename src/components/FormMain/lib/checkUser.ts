@@ -1,5 +1,5 @@
 //Типы
-import { IUser } from "../types/types";
+import { IUser } from "../../types/types";
 
 export function checkUser(value: string | IUser) {
     const users = JSON.parse(localStorage.getItem('users') ?? '[]')

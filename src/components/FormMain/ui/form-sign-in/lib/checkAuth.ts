@@ -3,7 +3,7 @@ import { checkUser } from "../../../lib/checkUser";
 import { comparePassword } from '../../../lib/comparePassword';
 
 //Типы
-import { IUser, Message } from "../../../types/types";
+import { IUser, Message } from "../../../../types/types";
 
 
 export const checkAuth = async (data: IUser): Promise<Message> => {

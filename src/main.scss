@@ -1,0 +1,14 @@
+body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    font-family: sans-serif;
+}
+
+body.active {
+    background-color: rgb(86, 205, 127);
+}
+
+.hidden {
+    display: none;
+}

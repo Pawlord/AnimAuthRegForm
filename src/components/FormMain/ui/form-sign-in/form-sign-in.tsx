@@ -2,8 +2,8 @@ import React from 'react';
 import { useAuth } from './lib/useAuth';
 
 //Компоненты
-import { FormGroup } from '../../uikit/form-group';
-import { UiButton } from '../../uikit/ui-button';
+import { FormGroup } from '../../../uikit/form-group';
+import { UiButton } from '../../../uikit/ui-button';
 import { FormTitle } from '../form-title';
 import { FormLayout } from '../form-layout/form-layout';
 

@@ -3,6 +3,9 @@ import ReactDOM from 'react-dom/client';
 import { Form, HomePage } from './Pages';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
+//Стили
+import './main.scss';
+
 const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
 root.render(
 

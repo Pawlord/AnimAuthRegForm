@@ -1,5 +1,7 @@
+@use 'variables' as v;
+
 .form__title {
     text-align: center;
-    font-weight: normal;
+    font-weight: 500;
     margin-bottom: 40px;
 }

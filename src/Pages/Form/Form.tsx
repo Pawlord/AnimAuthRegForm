@@ -6,12 +6,10 @@ import { ToastContainer } from 'react-toastify';
 // Компоненты
 import { MainLayout, RegistrationSection, SignInSection, FormSignIn, FormRegistration } from '../../components/FormMain/ui'
 
-// Стили
-import './form.scss';
-
 //Контекст
 import { BodyActiveContextProvider } from '../../components/context/bodyActiveContext';
 import { CenterLayout } from '../../components/layouts/center-layout';
+
 
 export function Form() {
 

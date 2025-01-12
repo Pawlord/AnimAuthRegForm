@@ -1,0 +1,28 @@
+@use 'variables' as v;
+
+.header {
+    -webkit-touch-callout: none;
+    /* iOS Safari */
+    -webkit-user-select: none;
+    /* Safari */
+    -khtml-user-select: none;
+    /* Konqueror HTML */
+    -moz-user-select: none;
+    /* Old versions of Firefox */
+    -ms-user-select: none;
+    /* Internet Explorer/Edge */
+    user-select: none;
+    /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+
+    padding: 1rem 4rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    background-color: whitesmoke;
+    border-radius: 10px;
+    box-shadow: 0 0 7px rgba(0, 0, 0, 0.5);
+
+    @include v.family($font-weight: 600);
+}

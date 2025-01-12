@@ -1,17 +1,31 @@
 import React from 'react'
 
+//работа с react-router-dom
+import { useNavigate } from 'react-router-dom';
+
 //Стили
 import './header.scss';
+
+//Компоненты
+import { Navigation } from './ui/navigation';
+import { HeaderLogo } from './ui/header-logo';
+import { HeaderTitle } from './ui/header-title';
+import { HeaderLayout } from './ui/header-layout';
 
 type Props = {}
 
 export const Header = (props: Props) => {
+    const navigate = useNavigate();
+
+    const onClick = () => {
+        navigate('/');
+    }
+
     return (
-        <header className='header'>
-            <div className='header__logo'>
-                <h3 className='header__logo-title'>Logo</h3>
-                <p className='header__logo-subtitle'>web-site of the future</p>
-            </div>
-        </header>
+        <HeaderLayout
+            headerLogo={<HeaderLogo />}
+            headerTitle={<HeaderTitle text='Drag and smile' color='orange' />}
+            headerNavigation={<Navigation onClick={onClick} />}
+        />
     )
 }

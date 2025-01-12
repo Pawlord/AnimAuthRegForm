@@ -1,3 +1,5 @@
+@use 'variables' as v;
+
 .block__item {
     width: 50%;
     text-align: center;
@@ -12,11 +14,9 @@
 
 .block-item__btn {
     letter-spacing: 0.3px;
-    font-size: 14px;
-    font-weight: 600;
-    font-family: sans-serif;
+    @include v.family($font-size: 14px, $font-weight: 600);
 
-    color: #333;
+    color: v.$light-black;
     padding: 10px 20px;
     cursor: pointer;
     background-color: #fff;
@@ -24,17 +24,17 @@
     border: none;
 
     transition: 0.3s;
-    box-shadow: 0px 1px 3px rgba(0, 0, 0, 0.5)
+    box-shadow: v.$shadow-low;
 }
 
 .block-item__btn:hover {
-    background-color: #f0f0f0;
+    background-color: v.$light-grey;
 }
 
 .register-btn:hover {
-    color: #328de2;
+    color: v.$light-blue;
 }
 
 .signin-btn:hover {
-    color: rgb(86, 205, 127);
+    color: v.$green;
 }

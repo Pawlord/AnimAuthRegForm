@@ -1,8 +1,11 @@
+@use 'variables' as v;
+
 .container {
     height: 400px;
     width: 800px;
     padding: 40px 0;
     position: relative;
+    @include v.family;
 }
 
 .block {

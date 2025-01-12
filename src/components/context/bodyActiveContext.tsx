@@ -15,7 +15,6 @@ export function BodyActiveContextProvider({ children }: Props) {
 
     const onClickToggleBodyActive = () => {
         setIsActive(prevState => !prevState);
-        document.body.classList.toggle('active')
     }
 
     return (

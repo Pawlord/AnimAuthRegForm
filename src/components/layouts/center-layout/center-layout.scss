@@ -1,10 +1,16 @@
+@use '../../../variables' as v;
+
 .center-layout {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100vh;
-    background-color: #328de2;
+    background-color: v.$light-blue;
     overflow: hidden;
 
     transition: 0.85s;
+}
+
+.center-layout.active {
+    background-color: v.$green;
 }

@@ -1,0 +1,33 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+
+// Цвета
+$red: rgb(192, 44, 44);
+$light-green: rgb(99, 226, 144);
+$green: rgb(86, 205, 127);
+$light-blue: #56a1f7;
+$blue: #328de2;
+$dark-blue: rgb(72, 62, 201);
+$orange: #dda325;
+$dark-yellow: rgb(193, 193, 40);
+$light-black: rgb(78, 78, 78);
+$black: rgb(0, 0, 0);
+$light-grey: #f9f9f9;
+$grey: #e0e0e0;
+$dark-grey: #9e9e9e;
+
+//Тени
+$shadow-standart: 0 0 7px rgba(0, 0, 0, 0.5);
+$shadow-low: 0 1px 2px rgba(0, 0, 0, 0.5);
+
+//Шрифты и размер
+$family-s: Arial, Helvetica, sans-serif;
+$family-rubik: 'Rubik';
+$family-mont: 'Montserrat';
+
+@mixin family($family: 'Montserrat', $font-size: 16px, $font-weight: 500, $letter-space: 0.7px) {
+    font-family: $family;
+    font-size: $font-size;
+    font-weight: $font-weight;
+    letter-spacing: $letter-space;
+}

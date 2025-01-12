@@ -1,0 +1,10 @@
+@use 'variables' as v;
+
+.navigation-list__item {
+    cursor: pointer;
+    transition: 0.3s;
+
+    &:hover {
+        color: v.$orange;
+    }
+}

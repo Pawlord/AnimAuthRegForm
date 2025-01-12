@@ -1,7 +1,24 @@
-.form__button {
-    padding: 10px 30px;
-    width: 70%;
+@use 'variables' as v;
+
+.small-btn {
     border: none;
+    outline: none;
+    border-radius: 7px;
+
+    padding: 10px 20px;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.4);
+    background-color: v.$light-grey;
+    @include v.family($font-size: 14px, $font-weight: 600);
+
+    transition: 0.25s linear;
+    cursor: pointer;
+}
+
+.medium-btn {
+    width: 75%;
+    padding: 10px 30px;
+    border: none;
+    outline: none;
     color: #fff;
     border-radius: 5px;
     cursor: pointer;
@@ -12,27 +29,34 @@
     left: 50%;
     transform: translateX(-50%);
 
-    font-family: sans-serif;
-    font-size: 16px;
-    letter-spacing: 1px;
+    @include v.family;
 }
 
 .blue-btn {
-    background-color: #328de2;
+    background-color: v.$blue;
+
+    &:hover,
+    &:focus {
+        background-color: v.$light-blue;
+    }
 }
 
 .green-btn:not(:disabled) {
-    background-color: rgb(86, 205, 127);
+    background-color: v.$green;
+
+    &:hover,
+    &:focus {
+        background-color: v.$light-green;
+    }
 }
 
-.blue-btn:hover,
-.blue-btn:focus {
-    background-color: #56a1f7;
-}
+.red-btn {
+    color: v.$light-black;
 
-.green-btn:not(:disabled) .green-btn:hover,
-.green-btn:not(:disabled) .green-btn:focus {
-    background-color: rgb(99, 226, 144);
+    &:hover {
+        color: v.$red;
+        background-color: #fff;
+    }
 }
 
 .form__button:disabled {

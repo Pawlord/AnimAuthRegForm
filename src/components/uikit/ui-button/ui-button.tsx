@@ -9,22 +9,31 @@ import './ui-button.scss';
 
 type Props = {
     color?: string;
+    size?: string;
     text: string;
     disabled?: boolean;
     isLoading?: boolean;
+    onClick?: () => void;
 }
 
-export function UiButton({ color = 'blue', text, disabled, isLoading }: Props) {
+export function UiButton({ color = 'blue', size = 'medium', text, disabled, isLoading, onClick }: Props) {
     const btnStyle = {
         'blue': "blue-btn",
-        'green': "green-btn"
+        'green': "green-btn",
+        'red': 'red-btn',
     }[color]
+
+    const btnSize = {
+        'small': "small-btn",
+        'medium': "medium-btn",
+    }[size]
 
     return (
         <button
-            className={clsx(`form__button ` + btnStyle)}
+            className={clsx(btnStyle, btnSize)}
             type="submit"
             disabled={disabled}
+            onClick={onClick}
         >
             {isLoading ? <UiLoader /> : text}
         </button>

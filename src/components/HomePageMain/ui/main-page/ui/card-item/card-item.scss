@@ -1,0 +1,83 @@
+@use 'variables' as v;
+
+.card-item {
+    width: 250px;
+    position: relative;
+
+    color: v.$light-black;
+    font-family: v.$family-mont;
+
+    figure {
+        font-weight: 600;
+        text-align: center;
+
+        .card-item__img-container {
+            width: 100%;
+            height: 250px;
+            margin-bottom: 10px;
+
+            .card-item__img {
+                width: 100%;
+                height: 100%;
+
+                box-shadow: v.$shadow-low;
+
+                border-radius: 15px;
+                object-fit: cover;
+            }
+        }
+    }
+
+    &__size-container {
+        display: inline-block;
+        padding: 5px 10px;
+        font-size: 12px;
+
+        background-color: #fff;
+        text-align: center;
+        box-shadow: v.$shadow-standart;
+
+        border-radius: 15px;
+
+        position: absolute;
+        bottom: 95%;
+        left: 50%;
+        transform: translateX(-50%);
+
+        opacity: 0;
+        transition: 0.3s;
+    }
+
+    &__delete-button-container {
+        position: absolute;
+        top: -10px;
+        left: 93%;
+
+        background-color: #fff;
+        box-shadow: v.$shadow-standart;
+
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+
+        cursor: pointer;
+        opacity: 0;
+        transition: 0.3s;
+
+        .delete-button {
+            color: v.$red;
+            font-size: 1.3rem;
+            font-weight: 500;
+        }
+    }
+
+    &:hover &__size-container,
+    &:hover &__delete-button-container {
+        opacity: 1;
+    }
+}

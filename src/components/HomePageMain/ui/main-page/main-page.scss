@@ -1,0 +1,12 @@
+@use 'variables' as v;
+
+.main-page {
+    color: v.$dark-yellow;
+    border-radius: 10px;
+    background-color: whitesmoke;
+    padding: 2rem;
+    box-shadow: v.$shadow-standart;
+    height: 100%;
+
+    font-family: v.$family-s;
+}

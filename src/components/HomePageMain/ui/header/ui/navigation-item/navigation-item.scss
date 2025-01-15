@@ -1,10 +1,32 @@
 @use 'variables' as v;
 
 .navigation-list__item {
-    cursor: pointer;
-    transition: 0.3s;
 
-    &:hover {
-        color: v.$orange;
+    &-link {
+        text-decoration: none;
+        color: v.$light-black;
+
+        transition: 0.3s;
+
+        &:hover {
+            color: v.$orange;
+        }
+
+
+    }
+
+    .exit {
+        background-color: v.$light-grey;
+        padding: 10px 20px;
+        border-radius: 7px;
+        color: v.$light-black;
+        box-shadow: v.$shadow-low;
+
+        transition: 0.3s;
+
+        &:hover {
+            background-color: #fff;
+            color: v.$red;
+        }
     }
 }

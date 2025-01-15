@@ -1,0 +1,68 @@
+@use 'variables' as v;
+
+.drop-container {
+    box-sizing: border-box;
+    display: grid;
+    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fill, 250px);
+    justify-content: space-between;
+    align-items: center;
+}
+
+.drop-block {
+    position: relative;
+    color: v.$grey;
+
+    &__form {
+        box-sizing: border-box;
+        border: 6px dashed v.$grey;
+        border-radius: 25px;
+
+        width: 250px;
+        height: 300px;
+
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+
+
+
+        &-label {
+
+            .form-label__button {
+                position: relative;
+                font-size: 3.35rem;
+                transition: 0.3s;
+            }
+
+            .form-label__input {
+                cursor: pointer;
+                position: absolute;
+
+                margin: 0;
+                padding: 0;
+
+                width: 100%;
+                height: 100%;
+                left: 0;
+                top: 0;
+                opacity: 0;
+            }
+        }
+
+        .drop-block__text {
+            display: block;
+            opacity: 1;
+            font-weight: 600;
+            transition: 0.3s;
+        }
+    }
+
+    &__form.drag {
+        border-color: v.$light-green;
+        background-color: #e6ffe3;
+        color: v.$orange;
+    }
+}

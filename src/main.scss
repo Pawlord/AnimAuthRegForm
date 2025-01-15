@@ -1,8 +1,10 @@
+@use 'variables' as v;
+
 body {
     margin: 0;
     padding: 0;
     overflow: hidden;
-    font-family: sans-serif;
+    @include v.family;
 }
 
 .hidden {

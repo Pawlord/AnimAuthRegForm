@@ -1,0 +1,15 @@
+@use 'variables' as v;
+
+.account-page {
+    color: v.$dark-yellow;
+    border-radius: 10px;
+    background-color: whitesmoke;
+    padding: 10px;
+    box-shadow: v.$shadow-standart;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    font-family: v.$family-s;
+}

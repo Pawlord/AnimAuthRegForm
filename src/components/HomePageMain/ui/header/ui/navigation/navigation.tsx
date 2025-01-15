@@ -2,30 +2,43 @@ import React from 'react'
 
 //Стили
 import './navigation.scss';
-import { ExitButton } from '../exit-button';
+
+//Компоненты
 import { NavigationItem } from '../navigation-item';
 
-type Props = {
-    onClick?: () => void;
+type Props = {}
+
+type NavigationItems = {
+    text: string;
+    to: string;
 }
 
-export const Navigation = ({ onClick }: Props) => {
-    const navigationItems: Array<string> = ['Главная', 'О нас', 'Аккаунт', 'Выйти'];
+// В БУДУЩЕМ МОЖЕТ ПОТРЕБОВАТЬСЯ USECALLBACK
 
-    function renderListItem(): React.ReactNode[] {
+export const Navigation = (props: Props) => {
+
+    const navigationItems: Array<NavigationItems> = [
+        { text: 'Главная', to: '/home-page' },
+        { text: 'О нас', to: '/home-page/about' },
+        { text: 'Аккаунт', to: '/home-page/account' },
+        { text: 'Выйти', to: '/' },
+    ]
+
+    const renderItem = (): React.ReactNode[] => {
         return navigationItems.map(item => {
-            if (item === 'Выйти') {
-                return <NavigationItem key={item} text={<ExitButton onClick={onClick} />} />
-            } else {
-                return <NavigationItem key={item} text={item} />
-            }
+            return <NavigationItem
+                key={item.text}
+                to={item.to}
+                text={item.text}
+                className={item.text === 'Выйти' ? 'exit' : ''}
+            />
         })
     }
 
     return (
         <nav className='header__navigation'>
             <ul className='navigation-list'>
-                {renderListItem()}
+                {renderItem()}
             </ul>
         </nav>
     )

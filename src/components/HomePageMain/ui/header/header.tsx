@@ -1,5 +1,3 @@
-import React from 'react'
-
 //работа с react-router-dom
 import { useNavigate } from 'react-router-dom';
 
@@ -17,15 +15,11 @@ type Props = {}
 export const Header = (props: Props) => {
     const navigate = useNavigate();
 
-    const onClick = () => {
-        navigate('/');
-    }
-
     return (
         <HeaderLayout
             headerLogo={<HeaderLogo />}
             headerTitle={<HeaderTitle text='Drag and smile' color='orange' />}
-            headerNavigation={<Navigation onClick={onClick} />}
+            headerNavigation={<Navigation />}
         />
     )
 }

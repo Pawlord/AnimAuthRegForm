@@ -1,0 +1,51 @@
+@use 'variables' as v;
+
+.toolbar-button {
+    border: none;
+    outline: none;
+    border-radius: 15px;
+    background-color: #fff;
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.4);
+
+    transition: 0.25s linear;
+    cursor: pointer;
+}
+
+.small-btn {
+    padding: 7px 20px;
+
+    @include v.family($font-size: 14px, $font-weight: 600);
+}
+
+.medium-btn {
+    padding: 10px 30px;
+
+    @include v.family($font-size: 16px, $font-weight: 600);
+}
+
+.red-btn {
+    color: v.$red;
+
+    &:hover:not(:disabled) {
+        color: #fff;
+        background-color: #cd5555;
+    }
+}
+
+.white-btn {
+    color: v.$light-black;
+    background-color: #fff;
+
+    &:hover {
+        background-color: #f3f3f3;
+    }
+}
+
+button:disabled {
+    color: v.$light-black;
+    background-color: lightgray;
+
+    &:hover {
+        cursor: auto;
+    }
+}

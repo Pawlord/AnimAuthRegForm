@@ -5,7 +5,7 @@ import './center-layout.scss'
 import clsx from 'clsx'
 
 //Контекст
-import { BodyActiveContext } from '../../context/bodyActiveContext'
+import { BodyActiveContext } from '@/context/bodyActiveContext'
 
 type Props = {
     children: React.ReactNode

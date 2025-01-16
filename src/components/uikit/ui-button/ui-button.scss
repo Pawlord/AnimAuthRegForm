@@ -50,15 +50,6 @@
     }
 }
 
-.red-btn {
-    color: v.$light-black;
-
-    &:hover {
-        color: v.$red;
-        background-color: #fff;
-    }
-}
-
 .form__button:disabled {
     cursor: not-allowed;
 }

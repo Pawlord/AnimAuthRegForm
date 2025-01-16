@@ -1,25 +1,25 @@
-import React from 'react';
+import React from 'react'
 import clsx from 'clsx';
+
+//Стили
+import styles from './ui-toolbar-button.module.scss';
 
 //Компоненты
 import { UiLoader } from '../ui-loader/ui-loader';
 
-//Стили
-import './ui-button.scss';
-
 type Props = {
-    color?: string;
-    size?: string;
+    color: 'red' | 'white';
+    size: 'small' | 'medium';
     text: string;
     disabled?: boolean;
     isLoading?: boolean;
     onClick?: () => void;
 }
 
-export function UiButton({ color = 'blue', size = 'medium', text, disabled, isLoading, onClick }: Props) {
+export const UiToolbarButton = ({ color = 'white', size = 'medium', text, disabled, isLoading, onClick }: Props) => {
     const btnStyle = {
-        'blue': "blue-btn",
-        'green': "green-btn",
+        'red': 'red-btn',
+        'white': 'white-btn',
     }[color]
 
     const btnSize = {
@@ -29,8 +29,8 @@ export function UiButton({ color = 'blue', size = 'medium', text, disabled, isLo
 
     return (
         <button
-            className={clsx(btnStyle, btnSize)}
-            type="submit"
+            className={clsx(styles['toolbar-button'], styles[btnStyle], styles[btnSize])}
+            type="button"
             disabled={disabled}
             onClick={onClick}
         >

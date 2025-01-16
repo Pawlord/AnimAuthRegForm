@@ -3,11 +3,11 @@
         "baseUrl": "./src",
         "paths": {
             "@/*": [
-                "*"
+                "./*"
             ],
             "@components/*": [
                 "components/*"
-            ],
+            ]
         },
         "target": "es5",
         "lib": [
@@ -27,9 +27,14 @@
         "resolveJsonModule": true,
         "isolatedModules": true,
         "noEmit": true,
-        "jsx": "react-jsx"
+        "jsx": "react-jsx",
+        "types": [
+            "node",
+            "react"
+        ]
     },
     "include": [
         "src",
+        "./src/**/*.d.ts"
     ]
 }

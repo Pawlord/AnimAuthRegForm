@@ -5,7 +5,7 @@ import clsx from 'clsx';
 import './form-group.scss'
 
 //Типы
-import { InputProps, AuthData } from '../../types/types';
+import { InputProps, AuthData } from '@/types/types';
 import { FormState } from 'react-hook-form';
 
 type Props = {

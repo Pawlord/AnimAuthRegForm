@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom/client';
 
 //Компоненты
 import { Form, Home } from './Pages';
-import { MainPage, AboutPage, AccountPage } from './components/HomePageMain/ui';
+import { MainPage, AboutPage, AccountPage } from './components/for-homePage/ui';
 
 //Работа с react-router-dom
 import { BrowserRouter, Routes, Route } from 'react-router-dom';

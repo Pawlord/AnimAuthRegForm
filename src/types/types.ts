@@ -42,7 +42,13 @@ export interface RegAuthResult {
 export interface IErrorData { type: string, message: string };
 
 export type ImageObj = {
+    imgKey: string,
     imgName: string,
     imgSize: string,
     imgUrl: string,
+}
+
+export type FileObj = {
+    file: File,
+    key: string,
 }

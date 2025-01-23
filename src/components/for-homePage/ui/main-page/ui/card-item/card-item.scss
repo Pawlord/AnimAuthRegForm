@@ -81,3 +81,27 @@
         opacity: 1;
     }
 }
+
+.selectable {
+    cursor: pointer;
+    transition: transform 0.4s;
+
+    &:hover {
+        transform: scale(1.04);
+    }
+
+    &:active {
+        transform: scale(1);
+    }
+}
+
+.selected {
+    transform: scale(0.9);
+    transition: 0.3s;
+
+    figure {
+        .card-item__img {
+            filter: grayscale(90%);
+        }
+    }
+}

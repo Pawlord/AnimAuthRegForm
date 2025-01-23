@@ -21,7 +21,6 @@ export const UiToolbarButton = ({ color = 'white', size = 'medium', text, disabl
         'red': 'red-btn',
         'white': 'white-btn',
     }[color]
-
     const btnSize = {
         'small': "small-btn",
         'medium': "medium-btn",

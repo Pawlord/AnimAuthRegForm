@@ -6,13 +6,27 @@ import './toolbar.scss';
 //Компоненты
 import { UiToolbarButton } from '@/components/uikit/ui-toolbar-button';
 
+//Типы
+import { ImageObj } from '@/types/types';
+
 type Props = {
     isSelecting: boolean;
     setIsSelecting: (arg: boolean) => void;
+    setSelectedImages: React.Dispatch<React.SetStateAction<Set<ImageObj | unknown>>>;
     isEmpty: boolean;
+    onClearAll: () => void;
 }
 
-export const Toolbar = ({ isSelecting, setIsSelecting, isEmpty }: Props) => {
+export const Toolbar = ({ isSelecting, setIsSelecting, setSelectedImages, isEmpty, onClearAll }: Props) => {
+
+    const handleSelecting = () => {
+        if (isSelecting) {
+            setIsSelecting(false);
+            setSelectedImages(new Set());
+        } else {
+            setIsSelecting(true)
+        }
+    }
 
     return (
         <section className='toolbar-container'>
@@ -21,7 +35,7 @@ export const Toolbar = ({ isSelecting, setIsSelecting, isEmpty }: Props) => {
                     text='Выбрать'
                     size='small'
                     color='white'
-                    onClick={() => setIsSelecting(true)}
+                    onClick={handleSelecting}
                 />}
 
             {isSelecting &&
@@ -30,14 +44,14 @@ export const Toolbar = ({ isSelecting, setIsSelecting, isEmpty }: Props) => {
                         text='Готово'
                         size='small'
                         color='white'
-                        onClick={() => setIsSelecting(false)}
+                        onClick={handleSelecting}
                     />
                     <UiToolbarButton
                         text='Удалить'
                         size='small'
                         color='red'
                         disabled={isEmpty}
-                        onClick={() => console.log('Нажато удалить')}
+                        onClick={onClearAll}
                     />
                 </>
             }

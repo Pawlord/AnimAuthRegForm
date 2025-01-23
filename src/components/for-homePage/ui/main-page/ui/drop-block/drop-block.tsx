@@ -7,44 +7,57 @@ import './drop-block.scss';
 import { CardItem } from '../card-item';
 import clsx from 'clsx';
 
+//UUID
+import { v4 as uuidv4 } from 'uuid';
+
 //Типы
-import { ImageObj } from '@/types/types';
+import { ImageObj, FileObj } from '@/types/types';
 
 type Props = {
     setIsActive: (arg: boolean) => void;
+    isSelecting: boolean;
+    setSelectedImages: React.Dispatch<React.SetStateAction<Set<unknown>>>;
+    selectedImages: Set<ImageObj | unknown>;
+    previewBlock: Array<ImageObj>;
+    setPreviewBlock: React.Dispatch<React.SetStateAction<ImageObj[]>>;
+    fileInputRef: React.RefObject<HTMLInputElement | null>;
+    files: FileObj[];
+    setFiles: React.Dispatch<React.SetStateAction<FileObj[]>>;
 }
 
-export const DropBlock = ({ setIsActive }: Props) => {
-    const [files, setFiles] = React.useState<File[]>([]);
-    const [previewBlock, setPreviewBlock] = React.useState<ImageObj[]>([]);
+export const DropBlock = ({ setIsActive, isSelecting, setSelectedImages, selectedImages, previewBlock, setPreviewBlock, fileInputRef, files, setFiles }: Props) => {
     const [isDragActive, setIsDragActive] = React.useState<boolean>(false);
-    const fileInputRef = React.useRef<HTMLInputElement>(null);
 
     const handleChange = async (e: React.ChangeEvent<HTMLInputElement>) => {
         e.preventDefault();
         if (e.target.files) {
-            const filesArray = Array.from(e.target.files)
-            if (filesArray.length > 0) {
-                setFiles(prev => [...prev, ...filesArray])
+            const filesArray = Array.from(e.target.files).map(file => {
+                const key = uuidv4();
+                return { file, key }
+            })
+            setFiles(filesArray);
+            if (fileInputRef.current) {
+                fileInputRef.current.value = '';
             }
-
         }
     }
 
-    const createPreview = async (file: File): Promise<ImageObj> => {
+    const createPreview = async (file: FileObj): Promise<ImageObj> => {
         const reader = new FileReader();
 
         const imgUrl = await new Promise<string>((resolve) => {
             reader.onload = (e) => {
                 resolve(e.target?.result as string);
             };
-            reader.readAsDataURL(file);
+            reader.readAsDataURL(file.file);
         });
 
-        const imgSize = formatBytes(file.size);
-        const imgName = file.name
+        const imgSize = formatBytes(file.file.size);
+        const imgName = file.file.name;
+        const imgKey = file.key;
 
         return {
+            imgKey,
             imgName,
             imgUrl,
             imgSize,
@@ -72,7 +85,10 @@ export const DropBlock = ({ setIsActive }: Props) => {
     const handleDrop = async (e: React.DragEvent) => {
         e.preventDefault();
         setIsDragActive(false);
-        const dropedFiles = Array.from(e.dataTransfer?.files).filter(file => file.type.startsWith('image/'));
+        const dropedFiles = Array.from(e.dataTransfer?.files).filter(file => file.type.startsWith('image/')).map(file => {
+            const key = `${file.name}-${file.size}-${file.lastModified}`;
+            return { file, key }
+        });
 
         if (dropedFiles && dropedFiles[0]) {
             setFiles(prev => [...prev, ...dropedFiles]);
@@ -80,14 +96,10 @@ export const DropBlock = ({ setIsActive }: Props) => {
     }
 
     React.useEffect(() => {
-        //Проверка наличия фотографий в массиве для отображения тулбара TODOS: потом надо отрефакторить
-        previewBlock.length === 0 ? setIsActive(false) : setIsActive(true);
-    }, [previewBlock])
 
-    React.useEffect(() => {
         const loadPreview = async (): Promise<void> => {
             const previewCopy: ImageObj[] = [];
-            const newFiles = files.filter(file => !previewBlock.find(preview => preview.imgName === file.name));
+            const newFiles = files.filter(file => !previewBlock.find(preview => preview.imgKey === file.key));
 
             for (const file of newFiles) {
                 const preview = await createPreview(file);
@@ -97,11 +109,26 @@ export const DropBlock = ({ setIsActive }: Props) => {
             setPreviewBlock(prev => [...prev, ...previewCopy])
         }
         loadPreview();
-        console.log(files)
     }, [files])
 
+    const handleSelect = (imgKey: string) => {
+        const currentImg = previewBlock.filter(item => item.imgKey === imgKey);
+        setSelectedImages(prevState => {
+            const newSelected = new Set(prevState);
+            currentImg.forEach(img => {
+                if (newSelected.has(img)) {
+                    newSelected.delete(img);
+                } else {
+                    newSelected.add(img);
+                }
+
+            })
+            return newSelected;
+        })
+    }
+
     const onClear = (imgName: string) => {
-        setFiles(prev => prev.filter(file => file.name !== imgName));
+        setFiles(prev => prev.filter(file => file.file.name !== imgName));
         setPreviewBlock(prev => prev.filter(item => item.imgName !== imgName));
         if (fileInputRef.current) {
             fileInputRef.current.value = '';
@@ -110,7 +137,17 @@ export const DropBlock = ({ setIsActive }: Props) => {
 
     return (
         <section className='drop-container'>
-            {previewBlock.map(item => <CardItem key={item.imgName} onClick={() => onClear(item.imgName)} imgName={item.imgName} imgUrl={item.imgUrl} imgSize={item.imgSize} />)}
+            {previewBlock.map(item =>
+                <CardItem
+                    key={item.imgKey}
+                    onHandleSelect={() => handleSelect(item.imgKey)}
+                    onClick={() => onClear(item.imgName)}
+                    imgName={item.imgName}
+                    imgUrl={item.imgUrl}
+                    imgSize={item.imgSize}
+                    isSelecting={isSelecting}
+                    isSelected={selectedImages.has(item)}
+                />)}
             <div className='drop-block'>
                 <form
                     action=""
